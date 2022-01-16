@@ -1,0 +1,51 @@
+{
+    "cosmos-sdk": {
+        "branch": "release/v0.41.x-patched",
+        "description": ":chains: A Framework for Building High Value Public Blockchains :sparkles:",
+        "homepage": "https://cosmos.network/",
+        "owner": "crypto-com",
+        "repo": "cosmos-sdk",
+        "rev": "1dea5569bc98701c07680ac8883a0cf3843d66ef",
+        "sha256": "0kk5ygrdikqiix2pylxbpd5z6wwl570aq62avdxfy353g7w4gn3j",
+        "type": "tarball",
+        "url": "https://github.com/crypto-com/cosmos-sdk/archive/1dea5569bc98701c07680ac8883a0cf3843d66ef.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "v0.41.0-patched"
+    },
+    "nixpkgs": {
+        "branch": "master",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1491bab2b1113e745f107a36c7b81f89aed8cf1c",
+        "sha256": "0b4rhk42aw1gp3p6ajcklag3kwin14bqy6v2haq914sgx2nkw8bn",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/1491bab2b1113e745f107a36c7b81f89aed8cf1c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "poetry2nix": {
+        "branch": "master",
+        "description": "Convert poetry projects to nix automagically [maintainer=@adisbladis] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "poetry2nix",
+        "rev": "f0cc43e09f6adbbde8c1207d511cd124cdca28f4",
+        "sha256": "020qpwprkb52gimvmipixc7zqqmaxagxw9ddr75yf762s312byi3",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/poetry2nix/archive/f0cc43e09f6adbbde8c1207d511cd124cdca28f4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "relayer": {
+        "branch": "master",
+        "description": "An example of a server side IBC relayer to be used for Game of Zones and beyond",
+        "homepage": null,
+        "owner": "cosmos",
+        "repo": "relayer",
+        "rev": "1daec66da1700c9fcd8900dbf06c70f2fd838cdf",
+        "sha256": "0q1jk35cci8kyi9rbmr0yski4977pmzmmrxbrxzif2kp8ghviila",
+        "type": "tarball",
+        "url": "https://github.com/cosmos/relayer/archive/1daec66da1700c9fcd8900dbf06c70f2fd838cdf.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
