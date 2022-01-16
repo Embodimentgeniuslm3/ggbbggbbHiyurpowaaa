@@ -1,0 +1,149 @@
+# Changelog
+
+*September 7, 2021*
+
+## v3.1.1-croeseid
+This version is identical to the v3.1.0-croeseid, but updated the ibc-go dependency to 1.1.0.
+*WARNING*: DO NOT run this binary from "testnet-croeseid-4" genesis; you can upgrade to it after the upgrade block height has passed
+as per instructions on https://crypto.org/docs/getting-started/croeseid-testnet.html .
+
+
+*September 3, 2021*
+
+## v3.1.0-croeseid
+This version is identical to the v3.0.1-croeseid, but updated the Cosmos SDK dependency to 0.44.0 which contains a consensus-breaking security patch. It contains the upgrade handler for the plan "croeseid-0.44" which is meant to signal an upgrade on the "testnet-croeseid-4" public testnet. 
+*WARNING*: DO NOT run this binary from "testnet-croeseid-4" genesis; you can upgrade to it after the upgrade block height has passed
+as per instructions on https://crypto.org/docs/getting-started/croeseid-testnet.html .
+
+*August 26, 2021*
+
+## v3.0.1-croeseid
+This version is identical to the v3.0.0-croeseid, but updated the IBC dependency to 1.0.1 which contains a security patch
+and Tendermint was upgraded to 0.34.12.
+
+*August 13, 2021*
+
+## v3.0.0-croeseid
+This version is meant for the future testnet. It is based on IBC 1.0 and Cosmos SDK 0.43.0 which 
+contain several new features (such as the feegrant and authz modules), bug fixes (such as the vesting account bug fix)
+and breaking changes. For more details, please see the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/releases/tag/v0.43.0)
+and [ibc-go](https://github.com/cosmos/ibc-go/releases/tag/v1.0.0) release notes.
+
+*August 6, 2021*
+
+## v2.1.2
+This version is based on Cosmos SDK 0.42.9 which, among other changes, contains a fix for the non-deterministic app hash mismatch
+issues after node restarts or state sync.
+
+*July 12, 2021*
+
+## v2.1.1
+This version is based on Cosmos SDK 0.42.7 which, among other changes, contains additional state sync-related fixes.
+
+*June 22, 2021*
+
+## v2.1.0
+This version is based on Cosmos SDK 0.42.6 and Tendermint 0.34.11 which, among other changes, contain state sync-related fixes.
+
+### Features
+- [565](https://github.com/crypto-org-chain/chain-main/pull/565) NFT module query denom by name
+
+*May 18, 2021*
+
+## v2.0.1
+This released version is the same as v2.0.0, but contains an upgrade-critical fix.
+NOTE that the upgrade plan name is still expected to be "v2.0.0".
+*WARNING*: please follow the upgrade instructions described here: https://crypto.org/docs/getting-started/upgrade_guide.html#the-canis-major-upgrade-guide-v1-to-v2-0-0
+
+### Bug Fixes
+- [552](https://github.com/crypto-org-chain/chain-main/pull/552) NFT module store initialized after upgrade
+
+*May 14, 2021*
+
+## v2.0.0
+This pre-release version contains the scope of [ADR-003](https://github.com/crypto-org-chain/chain-main/blob/master/doc/architecture/adr-003.md) for the mainnet upgrade. It also upgrades to the latest version of Tendermint (0.34.10).
+*WARNING*: please follow the upgrade instructions described here: https://crypto.org/docs/getting-started/upgrade_guide.html#the-canis-major-upgrade-guide-v1-to-v2-0-0
+
+### Breaking changes
+- [516](https://github.com/crypto-org-chain/chain-main/pull/516) NFT module added
+### Features
+- [445](https://github.com/crypto-org-chain/chain-main/pull/445) aggregated tx history query command
+- [438](https://github.com/crypto-org-chain/chain-main/pull/438) multi-sign batch command exposed
+### Improvements
+- [536](https://github.com/crypto-org-chain/chain-main/pull/536) support for Arm64 (Linux and macOS)
+- [494](https://github.com/crypto-org-chain/chain-main/pull/494) default timeout_commit adjusted
+- [533](https://github.com/crypto-org-chain/chain-main/pull/533) Swagger UI contains chain-main API
+### Bug Fixes
+- [441](https://github.com/crypto-org-chain/chain-main/pull/441) fix for keyring on Linux
+
+*April 9, 2021*
+
+## v1.2.1
+A version based on the upstream release of Cosmos SDK 0.42.4.
+
+*March 26, 2021*
+
+## v1.2.0
+A version based on the upstream release of Cosmos SDK 0.42.3.
+### Bug Fixes
+* [423](https://github.com/crypto-org-chain/chain-main/pull/423) duplicate commands removed
+
+*March 11, 2021*
+
+## v1.1.0
+A version based on the upstream release of Cosmos SDK 0.42.1.
+### Bug Fixes
+* [411](https://github.com/crypto-com/chain-main/pull/411) bank keeper correctly initialized
+
+*March 9, 2021*
+## v1.0.1
+A version based on the upstream release of Cosmos SDK 0.42.0.
+(Note that the SDK 0.42.0 release is nearly identical to the patched SDK fork 0.41.4 that was used in 1.0.0.)
+
+*March 4, 2021*
+## v1.0.0
+A final initial released version based on a patched fork of Cosmos SDK 0.41.4
+(the patch is identical to the 0.8.1 to 0.9.1 releases, i.e. it fixes the bech32 address lookup issue in v0.40/v0.41 SDK releases).
+
+### Breaking changes
+* initial modules and custom protobuf were named with "v1"
+
+*February 4, 2021*
+## v0.9.1
+A version based on a patched fork of Cosmos SDK 0.41.0.
+
+*January 28, 2021*
+## v0.9.0
+A version based on the release of Cosmos SDK 0.41.0.
+
+*January 20, 2021*
+## v0.8.1
+A version based on the patched release of Cosmos SDK 0.40.1 that includes security fixes in Tendermint 0.40.3.
+
+*January 11, 2021*
+## v0.8.0
+A version based on the final release of Cosmos SDK 0.40.
+### Improvements
+* [347](https://github.com/crypto-com/chain-main/pull/347) keyring options help extended
+* [346](https://github.com/crypto-com/chain-main/pull/346) validation of command-line signed integer arguments
+* [345](https://github.com/crypto-com/chain-main/pull/345) legacy code removed
+
+*December 17, 2020*
+## v0.8.0-rc0 
+A version based on rc5 of Cosmos SDK 0.40 release candidate.
+### Breaking changes
+* many backwards incompatible changes to rc0 of Cosmos SDK 0.40
+### Features
+* supply querying
+* IBC module added
+### Improvements
+* using upstream Cosmos SDK denomination conversion utilities
+
+
+*October 14-November 16, 2020*
+Early versions based on rc0 of Cosmos SDK 0.40 release candidate.
+## v0.7.0-rc* 
+### Breaking changes
+### Features
+### Improvements
+### Bug Fixes
