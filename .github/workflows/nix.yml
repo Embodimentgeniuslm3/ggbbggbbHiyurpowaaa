@@ -1,0 +1,211 @@
+name: nix flow
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - release/**
+    tags:
+      - "*"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+          skipPush: true
+      - name: lint
+        run: make lint-ci
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+          signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          skipPush: ${{github.event_name == 'pull_request'}}
+      - name: Run integration tests
+        run: make nix-integration-test
+      - name: Build chain utils
+        run: nix-build -A chain-utils-testnet
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.*.txt
+          flags: integration_tests
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files
+          path: debug_files.tar.gz
+          if-no-files-found: ignore
+
+  test-upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+      - name: Run integration tests
+        run: make nix-integration-test-upgrade
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files_upgrade.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files_upgrade
+          path: debug_files_upgrade.tar.gz
+          if-no-files-found: ignore
+
+  test-ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+      - name: Run integration tests
+        run: make nix-integration-test-ledger
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files_ledger.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files_ledger
+          path: debug_files_ledger.tar.gz
+          if-no-files-found: ignore
+
+  test-slow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+      - name: Run integration tests
+        run: make nix-integration-test-slow
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files_slow.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files_slow
+          path: debug_files_slow.tar.gz
+          if-no-files-found: ignore
+
+  test-ibc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+      - name: Run integration tests
+        run: make nix-integration-test-ibc
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files_ibc.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files_ibc
+          path: debug_files_ibc.tar.gz
+          if-no-files-found: ignore
+
+  test-byzantine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+      - name: Run integration tests
+        run: make nix-integration-test-byzantine
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files_byzantine.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files_byzantine
+          path: debug_files_byzantine.tar.gz
+          if-no-files-found: ignore
+
+  test-gov:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+      - name: Run integration tests
+        run: make nix-integration-test-gov
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files_gov.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files_gov
+          path: debug_files_gov.tar.gz
+          if-no-files-found: ignore
+
+
+  test-grpc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: cachix/install-nix-action@v14
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crypto-com
+      - name: Run integration tests
+        run: make nix-integration-test-grpc
+      - name: Tar debug files
+        if: failure()
+        run: tar cfz debug_files_grpc.tar.gz -C /tmp/pytest-of-runner .
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: debug_files_grpc
+          path: debug_files_grpc.tar.gz
+          if-no-files-found: ignore
